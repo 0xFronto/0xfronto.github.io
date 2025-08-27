@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy Astro to GitHub Pages
 
 on:
   push:
@@ -11,22 +11,28 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
-  cancel-in-progress: false
+  group: pages
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: withastro/action@v2
+      - name: Build with Astro
+        uses: withastro/action@v2
         with:
           node-version: 20
-          # This builds the site and uploads the 'dist' folder as the Pages artifact
+          # (optional) package-manager: npm|pnpm|yarn
+          # The action builds  site and uploads ./dist as the Pages artifact.
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - id: deployment
+      - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4

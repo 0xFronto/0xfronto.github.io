@@ -1,0 +1,79 @@
+---
+import thm from "../data/tryhackme.json"; // { username, profileUrl, badgeIframe }
+const { username, profileUrl, badgeIframe } = thm;
+---
+---
+title: "Instant — HTB Medium"
+description: APK reversing → hard-coded JWT → Swagger LFI → SSH → Solar-PuTTY creds → root.
+date: 2025-08-18
+tags: [htb, android, jwt, swagger, lfi, ssh, privesc]
+draft: false
+---
+
+<section class="thm">
+  <h1 class="name">{username}</h1>
+  <p class="subtitle">Offensive security • CTFs • Adversary chains</p>
+
+  <div class="badge" aria-label="TryHackMe badge">
+    <!-- inject the iframe HTML string from JSON -->
+    <Fragment set:html={badgeIframe} />
+  </div>
+
+  <p class="links">
+    <a href={profileUrl} target="_blank" rel="noopener">TryHackMe profile →</a>
+  </p>
+</section>
+
+<style>
+  /* Hard cap width + auto margins so the whole block is centered
+     even if the parent layout uses its own grid/padding. */
+  .thm {
+    width: min(100%, 720px);
+    margin-inline: auto;             /* center the block itself */
+    margin-block: 3rem 2.5rem;
+    display: grid;
+    place-items: center;
+    justify-items: center;           /* center direct children in grid cell */
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .name {
+    margin: 0;
+    font-size: clamp(2.2rem, 4vw, 3rem);
+    line-height: 1.1;
+  }
+
+  .subtitle {
+    margin: .55rem 0 1rem;
+    color: var(--sl-color-gray-3);
+  }
+
+  /* Center the badge iframe and prevent the tiny scrollbar */
+  .badge {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  .badge :global(iframe) {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 520px;
+    aspect-ratio: 520 / 180;
+    height: auto;
+    border: none;
+    border-radius: 12px;
+  }
+
+  .links {
+    margin-top: 1.1rem;
+  }
+
+  /* If any upstream styles try to left-align text, neutralize them */
+  .thm, .thm * { text-align: center; }
+</style>
+
+

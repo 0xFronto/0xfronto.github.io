@@ -1,0 +1,299 @@
+---
+import Layout from "../layouts/IndexLayout.astro";
+import thm from "../data/tryhackme.json"; // { username, profileUrl, badgeIframe }
+import htb from "../data/htb.json";       // { username, profileUrl }
+
+const { username: thmUser, profileUrl: thmUrl, badgeIframe } = thm;
+const { username: htbUser, profileUrl: htbUrl } = htb;
+const year = new Date().getFullYear();
+---
+
+<Layout>
+  <main class="container">
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+      <div class="aura" aria-hidden="true"></div>
+
+      <div class="avatar" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22">
+          <path fill="currentColor" d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm2.5 5.5 2.75 2.25L6.5 14.5l1 1 4-3.25-4-3.25-1 1ZM11 15h5v-1.5h-5V15Z"/>
+        </svg>
+      </div>
+
+     <p class="subtitle">
+  I’m a <strong>Computer Science student (Robotics major)</strong> focused on <strong>ethical hacking</strong> and <strong>red teaming</strong>.  
+  Skilled in <strong>coding</strong>, <strong>reverse engineering</strong>, and <strong>web exploitation</strong>, with solid experience in <strong>CTFs</strong>.  
+  I enjoy applying <strong>problem-solving</strong> to <strong>security challenges</strong> and <strong>adversary tactics</strong> while maintaining a <strong>curious, research-driven mindset</strong>.
+</p>
+
+
+      <div class="cta">
+        <a class="btn btn--primary" href={thmUrl} target="_blank" rel="noopener">
+          TryHackMe ({thmUser})
+        </a>
+        <a class="btn" href={htbUrl} target="_blank" rel="noopener">
+          Hack The Box ({htbUser})
+        </a>
+      </div>
+    </section>
+
+    <!-- ============== TRACK RECORD ============== -->
+    <section class="pow">
+      <h2 class="title-underline">Stats</h2>
+      <div class="cards">
+        <!-- THM card -->
+        <a class="card card--track" href={thmUrl} target="_blank" rel="noopener">
+          <span class="pill pill--thm">TryHackMe</span>
+          <div class="badge">
+            <div set:html={badgeIframe}></div>
+          </div>
+        </a>
+
+        <!-- HTB card (modifier class .htb) -->
+        <a class="card card--track htb" href={htbUrl} target="_blank" rel="noopener">
+          <div class="htb-box">
+            <img
+              src="/htb-logo.png"
+              alt="Hack The Box"
+              class="htb-logo"
+              onerror="this.src='https://resources.hackthebox.com/hubfs/HTB-Logo-1.png'"
+            />
+          </div>
+          <p class="muted center">{htbUser} • view profile  → </p>
+        </a>
+      </div>
+    </section>
+
+    <!-- ================= SKILLS ================= -->
+    <section class="skills">
+      <h2 class="title-underline">Skills</h2>
+      <div class="skills__grid">
+        <article class="skillcard">
+          <h3>Programming & Foundations</h3>
+          <p>
+            Java, C++, Python, Bash, PowerShell • Linux (Debian/Kali/Ubuntu), Windows internals •
+            Networking fundamentals
+          </p>
+        </article>
+
+        <article class="skillcard">
+          <h3>Areas of Expertise</h3>
+          <p>
+            Web Exploitation • Active Directory Security • Privilege Escalation •
+            Post-Exploitation & Adversary Simulation • Coding • AI/ML • OSINT
+          </p>
+        </article>
+
+        <article class="skillcard">
+          <h3>Defensive Awareness</h3>
+          <p>
+            SOC workflows • SIEM & log analysis (Splunk, ELK) • Forensics (memory & disk triage) •
+            Threat emulation for detections
+          </p>
+        </article>
+
+        <article class="skillcard research">
+          <h3>Research & Development</h3>
+          <p>
+            Vulnerability research & exploit analysis • Reversing & malware analysis (developing) •
+            Exploit prototyping & PoCs • Lightweight tooling/automation • Applied cryptography •
+            Exploring AI/ML & blockchain security
+          </p>
+        </article>
+      </div>
+
+      <p class="skills__developing"><span>Currently focused:</span> advancing reversing & vulnerability research</p>
+      <p class="skills__developing"><span>Currently developing:</span> ctftime integration</p>
+    </section>
+
+  </main>
+</Layout>
+
+<style>
+/* ===== Container ===== */
+.container{ width:min(100%,1000px); margin-inline:auto; padding-block:clamp(1rem,3vw,1.5rem) 3rem; }
+
+/* ===== HERO ===== */
+.hero{
+  position:relative; overflow:hidden;
+  border:1px solid var(--sl-color-gray-5); border-radius:16px;
+  padding:clamp(2rem,6vw,3.5rem) clamp(1.5rem,5vw,3rem);
+  background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.01));
+  text-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.05);
+}
+.aura{ position:absolute; inset:-60% -30% auto -30%; height:90%;
+  background:conic-gradient(from 20deg at 50% 50%, rgba(124,77,255,.25), rgba(94,123,255,.18), rgba(124,77,255,.25));
+  filter:blur(48px); animation: swirl 14s linear infinite; pointer-events:none; }
+@keyframes swirl { to { transform: rotate(360deg); } }
+.avatar{ display:inline-flex; align-items:center; justify-content:center; width:44px; height:44px; margin:0 auto .5rem; border-radius:50%; color:#fff;
+  background:linear-gradient(135deg,#7c4dff,#5e7bff); box-shadow:0 8px 24px rgba(94,123,255,.35); }
+.title{ margin:.2rem 0 .4rem; font-size:clamp(2rem,5vw,2.6rem); }
+.subtitle{ margin:.1rem 0 1.4rem; color:var(--sl-color-gray-3); }
+.cta{ display:flex; gap:.8rem; flex-wrap:wrap; justify-content:center; }
+
+.btn{
+  display:inline-flex; align-items:center; gap:.5rem; padding:.7rem 1.15rem;
+  border:1px solid var(--sl-color-gray-5); border-radius:10px;
+  text-decoration:none; color:var(--sl-color-white); background:rgba(255,255,255,.03);
+  backdrop-filter:saturate(120%) blur(2px); font-weight:600;
+  transition:transform .08s ease, background .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+.btn:hover{ background:rgba(255,255,255,.06); border-color:var(--sl-color-gray-4);
+  transform:translateY(-1px); box-shadow:0 6px 18px rgba(0,0,0,.25); }
+.btn--primary{ border-color:transparent; background:linear-gradient(135deg,#7c4dff 0%, #5e7bff 100%); }
+
+/* ===== TRACK RECORD ===== */
+.pow h2{ margin-top:2rem; margin-bottom:.6rem; }
+.cards{ display:grid; gap:1rem; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
+.card{
+  text-decoration:none; color:inherit; border:1px solid var(--sl-color-gray-5);
+  border-radius:14px; padding:1rem 1.1rem; background:rgba(255,255,255,.02);
+  transition:transform .08s ease, border-color .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.card:hover{ transform:translateY(-2px); border-color:var(--sl-color-gray-4);
+  box-shadow:0 10px 24px rgba(0,0,0,.22); background:rgba(255,255,255,.03); }
+.pill{ display:inline-block; font-weight:700; font-size:.8rem; padding:.25rem .55rem; border-radius:999px; border:1px solid var(--sl-color-gray-5); background:rgba(255,255,255,.03); }
+.pill--thm{ border-color:transparent; background:linear-gradient(135deg,#7c4dff,#5e7bff); color:#fff; }
+
+/* THM track card */
+.card.card--track{
+  display:flex; flex-direction:column; justify-content:center; align-items:center;
+  overflow:hidden; border-radius:12px; background:rgba(0,0,0,.25); aspect-ratio:520/180;
+  background: transparent;
+}
+
+/* HTB track card override */
+.card.card--track.htb {
+  background: transparent;
+  border: 1px solid var(--sl-color-gray-5);
+  aspect-ratio: 520/180;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.card.card--track.htb:hover {
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.25);
+  border-color: rgba(0, 255, 0, 0.4);
+}
+.card--thm:hover {
+  box-shadow: 0 0 24px rgba(124, 77, 255, 0.45),  /* purple glow */
+              0 0 48px rgba(94, 123, 255, 0.35);  /* bluish glow */
+  transform: translateY(-2px);
+}
+
+/* Badge wrapper */
+.badge{
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  aspect-ratio: 520 / 180;
+  margin: 1rem auto .25rem;
+  border-radius: 12px;
+  overflow: hidden;
+  --card-surface: rgba(255,255,255,.02);
+  background: transparent;
+}
+.badge :global(iframe){
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-30%);  
+  width: 120%;
+  height: 100%;
+  border: 0;
+  display: block;
+  border-radius: 12px;
+}
+
+/* HTB logo */
+.htb-box{ display:flex; align-items:center; justify-content:center; width:100%; height:100%; }
+.htb-logo{ max-width:70%; max-height:70%; opacity:.95; filter:drop-shadow(0 6px 14px rgba(124,77,255,.25)); transition:opacity .2s ease, transform .15s ease; }
+.htb-logo:hover{ opacity:1; transform:translateY(-1px); }
+.muted{ color:var(--sl-color-gray-3); }
+.center{ text-align:center; }
+
+/* ===== SKILLS ===== */
+.skills{ margin-top:2rem; }
+.skills__title{ margin:0 0 .75rem; }
+.skills__grid{ display:grid; gap:1rem; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); }
+.skillcard{
+  border-radius:14px; padding:1rem 1.15rem 1.2rem;
+  background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.015));
+  border:1px solid var(--sl-color-gray-6, #23252c);
+  box-shadow:0 6px 16px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.04);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.skillcard:hover{ transform:translateY(-4px); border-color:transparent;
+  box-shadow:0 14px 34px rgba(0,0,0,.35), 0 0 0 1px rgba(124,77,255,.25) inset; }
+.skillcard h3{ margin:.1rem 0 .35rem; font-size:1.05rem; font-weight:700; letter-spacing:.2px; }
+
+/* Put the R&D card in the middle column on desktop */
+@media (min-width: 900px){
+  .skills__grid{ grid-template-columns: repeat(3, 1fr); }
+  .skillcard.research{ grid-column: 2; }
+}
+
+
+.cards a.card.card--track:first-child:hover {
+  box-shadow:
+    0 0 24px rgba(124, 77, 255, 0.45),
+    0 0 48px rgba(94, 123, 255, 0.35),
+    0 12px 24px rgba(0,0,0,.22);
+  border-color: rgba(124, 77, 255, 0.45);
+  transform: translateY(-2px);
+}
+
+
+.skills__developing{ margin-top:1rem; font-size:.92rem; color:var(--sl-color-gray-3); }
+.skills__developing span{
+  padding:.25rem .5rem;
+  border-radius:999px;
+  background:linear-gradient(135deg,#7c4dff,#5e7bff); color:#fff; margin-right:.5rem;
+}
+/* Make selection consistent in both dark & light modes */
+:root {
+  /* tweak if you want slightly different tints */
+  --selection-bg: rgba(124, 77, 255, 0.28);  /* purple wash */
+  --selection-fg: #ffffff;
+}
+
+/* Default selection everywhere */
+*::selection {
+  background: var(--selection-bg);
+  color: var(--selection-fg);
+}
+
+/* Fix selection for gradient text (your <strong> with text-clip) */
+strong::selection,
+.subtitle strong::selection {
+  /* When selected, force actual text color so it doesn't look broken */
+  -webkit-text-fill-color: var(--selection-fg);
+  color: var(--selection-fg);
+  background: var(--selection-bg);
+}
+
+/* Optional: if you use <em> or .gradient-text elsewhere */
+.gradient-text::selection {
+  -webkit-text-fill-color: var(--selection-fg);
+  color: var(--selection-fg);
+  background: var(--selection-bg);
+}
+
+
+
+
+/* ===== FOOTER ===== */
+.site-footer{ text-align:center; padding:1.5rem 0; font-size:.9rem; color:var(--sl-color-gray-3); border-top:1px solid var(--sl-color-gray-5); letter-spacing:.5px; }
+</style>
+
+<footer class="site-footer">
+  <p>
+    © {year} Fronto ·
+    <a href="https://github.com/0xFronto" target="_blank" rel="noopener">GitHub</a>
+    · <a href="/writeups">Write-ups</a>
+  </p>
+</footer>
+
+

@@ -1,0 +1,60 @@
+---
+export interface Props { hideFooter?: boolean }
+const { hideFooter = false } = Astro.props;
+const year = new Date().getFullYear();
+---
+<html lang="en">
+  <body>
+    <slot />
+
+    { !hideFooter && (
+      <footer class="site-foot">
+        <div class="site-foot__container">
+          <span>© {year} Fronto</span>
+
+          <nav class="site-foot__links">
+            <a href="https://github.com/0xFronto" target="_blank" rel="noopener">GitHub</a>
+            <a href="/about#proof-of-work">THM</a>
+            <a href="/about#proof-of-work">HTB</a>
+          </nav>
+        </div>
+      </footer>
+    )}
+  </body>
+</html>
+
+<style>
+.site-foot {
+  border-top: 1px solid var(--sl-color-gray-6);
+  margin-top: 2rem;
+}
+.site-foot__container {
+  width: min(100%, 1000px);        /* matches your main container width */
+  margin-inline: auto;
+  padding: .9rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;  /* © on the left, links on the right */
+}
+.site-foot__links {
+  display: flex;
+  gap: .9rem;
+}
+.site-foot__links a {
+  color: var(--sl-color-gray-3);
+  text-decoration: none;
+}
+.site-foot__links a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* Mobile stack */
+@media (max-width: 640px) {
+  .site-foot__container {
+    flex-direction: column;
+    gap: .5rem;
+  }
+}
+</style>
+

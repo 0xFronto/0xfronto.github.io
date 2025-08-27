@@ -1,0 +1,41 @@
+---
+import Layout from "../../layouts/IndexLayout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("writeups");
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<Layout>
+  <main class="container">
+    <article class="prose">
+      <header class="posthead">
+        <h1>{post.data.title ?? post.slug}</h1>
+        {post.data.date && <p class="muted">{post.data.date.toDateString()}</p>}
+        {post.data.description && <p class="muted">{post.data.description}</p>}
+      </header>
+      <Content />
+    </article>
+  </main>
+</Layout>
+
+<style>
+  .container { width: min(100%, 900px); margin-inline: auto; padding: 1rem; }
+  .posthead { margin-bottom: 1rem; }
+  .muted { color: var(--sl-color-gray-3); }
+  /* pleasant markdown defaults */
+  .prose :global(h2) { margin-top: 1.6rem; }
+  .prose :global(img) { max-width: 100%; height: auto; border-radius: 8px; }
+  .prose :global(code) { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  .prose :global(pre) { overflow:auto; padding: .9rem; border-radius: 10px; background: #0f1218; }
+  .prose :global(table) { width:100%; border-collapse: collapse; }
+  .prose :global(th), .prose :global(td) { border: 1px solid var(--sl-color-gray-5); padding: .5rem; }
+</style>

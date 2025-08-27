@@ -1,0 +1,101 @@
+---
+// src/layouts/IndexLayout.astro
+import BaseHead, { type Props as HeadProps } from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+
+type Props = HeadProps;
+const head = Astro.props as Props;
+
+// Helper: mark active link
+function isActive(path: string) {
+  return Astro.url.pathname === path ? 'active' : '';
+}
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead {...head} />
+  </head>
+  <body>
+    <nav class="topnav" aria-label="Primary">
+      <a href="/" class={`link ${isActive('/')}`} aria-current={isActive('/') ? 'page' : undefined}>Home</a>
+      <a href="/about" class={`link ${isActive('/about')}`} aria-current={isActive('/about') ? 'page' : undefined}>About</a>
+      <a href="/writeups" class={`link ${isActive('/writeups')}`} aria-current={isActive('/writeups') ? 'page' : undefined}>Write-ups</a>
+    </nav>
+
+    <div class="glow" aria-hidden="true"></div>
+
+    <Header />
+
+    <main class="container">
+      <slot />
+    </main>
+
+    <Footer />
+
+    <style>
+      :root {
+        --border: var(--sl-color-gray-5);
+        --text-dim: var(--sl-color-gray-2);
+      }
+
+      /* Top navigation */
+      .topnav{
+        position: relative;
+        z-index: 10; /* sit above any background effects */
+        display:flex;
+        gap:1rem;
+        justify-content:center;
+        padding:.8rem 1rem;
+        margin: 0 0 1rem 0;
+        border-bottom:1px solid var(--border);
+        -webkit-user-select:none; user-select:none;
+      }
+      .topnav .link{
+        text-decoration:none;
+        color: var(--text-dim);
+        font-weight:600;
+        padding:.35rem .6rem;
+        border-radius: .5rem;
+        transition: color .15s ease, background .15s ease, transform .08s ease;
+      }
+      .topnav .link:hover{
+        color: var(--sl-color-white);
+        background: rgba(255,255,255,.04);
+        transform: translateY(-1px);
+      }
+      .topnav .link.active{
+        color:#fff;
+        background: linear-gradient(135deg,#7c4dff33,#5e7bff22);
+        border: 1px solid var(--border);
+      }
+
+      /* Optional “glow” bg stays below nav */
+      .glow{
+        position: fixed;
+        inset: -20% -20% auto -20%;
+        height: 40vh;
+        z-index: 0;
+        pointer-events:none;
+        background: radial-gradient(40% 40% at 50% 20%,
+          rgba(124,77,255,.25) 0%,
+          rgba(94,123,255,.14) 40%,
+          transparent 70%);
+        filter: blur(40px);
+      }
+      @media (prefers-reduced-motion: reduce){
+        .glow{ filter: blur(30px); }
+      }
+
+      /* Content width wrapper */
+      .container{
+        position: relative;
+        z-index: 1;
+        width: min(100%, 1000px);
+        margin-inline: auto;
+        padding: clamp(1rem, 3vw, 1.5rem);
+      }
+    </style>
+  </body>
+</html>

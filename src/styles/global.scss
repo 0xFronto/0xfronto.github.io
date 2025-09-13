@@ -2,6 +2,8 @@
 @use 'type.scss';
 @use 'layout.scss';
 
+
+
 /* ===== SKILLS (polished cards) ===== */
 .skills { margin-top: 2rem; }
 .skills__title { margin: 0 0 .75rem; }
@@ -257,3 +259,30 @@ button:focus-visible,
   0%   { background-position: 0% 50%; }
   100% { background-position: 200% 50%; }
 }
+.badges__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;         /* controls spacing */
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.badges__grid a {
+  display: block;
+  line-height: 0;    /* no baseline markers */
+  text-decoration: none;
+  outline: none;     /* kill focus outline */
+}
+
+.badges__grid a img {
+  border-radius: 6px;
+  display: block;
+  vertical-align: middle; /* prevents ghost gaps */
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.badges__grid a img:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+

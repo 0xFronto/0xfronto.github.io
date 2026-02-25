@@ -11,7 +11,7 @@ const writeups = defineCollection({
   }),
 });
 
-// if you use "releases", keep it; otherwise you can remove/ignore this
+
 const releases = defineCollection({
   type: "content",
   schema: z.object({}).passthrough(),

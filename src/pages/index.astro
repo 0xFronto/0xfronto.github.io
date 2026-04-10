@@ -6,92 +6,305 @@ import Layout from "../layouts/IndexLayout.astro";
   <main class="home">
     <section class="hero">
       <div class="aura" aria-hidden="true"></div>
+      <div class="grid-overlay" aria-hidden="true"></div>
+      <div class="scanlines" aria-hidden="true"></div>
 
-      <h1 class="name">Fronto</h1>
-      <p class="tagline">CTF player & Computer Science student. Deep interest in cybersecurity and programming.</p>
+      <div class="hero-inner">
+        <div class="name-wrap">
+          <h1 class="name" data-text="N22">N22</h1>
+          <span class="name-rule" aria-hidden="true"></span>
+        </div>
 
-      <div class="cta">
-        <a href="/about" class="btn">About Me</a>
-        <a href="/writeups" class="btn btn--primary">Writeups</a>
+        <p class="tagline">
+          <span class="tagline-accent">CTF player</span> &amp; Computer Science student.<br/>
+          Deep interest in cybersecurity and programming.
+        </p>
+
+        <div class="cta">
+          <a href="/about" class="btn">About Me</a>
+          <a href="/writeups" class="btn btn--primary">
+            <span>Writeups</span>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="status-bar" aria-hidden="true">
+          <span class="dot"></span>
+          <span class="status-text">system online</span>
+        </div>
       </div>
     </section>
   </main>
 </Layout>
 
 <style>
-  .home{
-    width:min(100%,1000px);
-    margin-inline:auto;
-    padding-block:clamp(2rem,6vw,4rem) clamp(2rem,6vw,3rem);
+  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@700;800&family=DM+Sans:wght@300;400&display=swap');
+
+  .home {
+    width: min(100%, 1040px);
+    margin-inline: auto;
+    padding-block: clamp(3rem, 8vw, 6rem);
   }
 
-  .hero{
-    position:relative;
-    overflow:hidden;
-    border:1px solid var(--sl-color-gray-5);
-    border-radius:16px;
-    padding:clamp(2rem,6vw,3.5rem) clamp(1.5rem,5vw,3rem);
-    background:linear-gradient(
-      180deg,
-      rgba(255,255,255,.02) 0%,
-      rgba(255,255,255,.01) 100%
+  /* ── Hero shell ── */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(110, 75, 255, 0.25);
+    border-radius: 20px;
+    padding: clamp(3rem, 8vw, 5rem) clamp(2rem, 6vw, 4rem) clamp(2.5rem, 6vw, 4rem);
+    background: linear-gradient(
+      160deg,
+      rgba(18, 12, 40, 0.97) 0%,
+      rgba(8, 6, 22, 0.99) 100%
     );
-    text-align:center;
-    box-shadow: 0 10px 30px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.05);
+    box-shadow:
+      0 0 0 1px rgba(110, 75, 255, 0.1),
+      0 24px 80px rgba(0, 0, 0, 0.6),
+      0 0 120px rgba(80, 50, 200, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    text-align: center;
+    animation: hero-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
-  /* subtle glow behind the title */
-  .aura{
-    position:absolute; inset:-30% -20% auto -20%;
-    height:60%;
-    background: radial-gradient(60% 60% at 50% 50%,
-      rgba(110,75,255,.35) 0%,
-      rgba(110,75,255,.08) 45%,
-      transparent 70%);
-    filter: blur(40px);
-    pointer-events:none;
+  @keyframes hero-in {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 
-  .name{
-    margin:0 0 .4rem 0;
-    font-size:clamp(2.4rem,6vw,3.6rem);
-    letter-spacing:.3px;
+  /* ── Aura ── */
+  .aura {
+    position: absolute;
+    inset: -40% -30% auto;
+    height: 80%;
+    background: radial-gradient(
+      55% 55% at 50% 45%,
+      rgba(110, 75, 255, 0.45) 0%,
+      rgba(94, 123, 255, 0.15) 40%,
+      transparent 70%
+    );
+    filter: blur(55px);
+    pointer-events: none;
+    animation: pulse 6s ease-in-out infinite alternate;
   }
 
-  .tagline{
-    margin:.1rem 0 1.6rem;
-    color:var(--sl-color-gray-3);
-    font-size:clamp(1rem,2.2vw,1.1rem);
+  @keyframes pulse {
+    from { opacity: 0.7; transform: scaleX(1); }
+    to   { opacity: 1;   transform: scaleX(1.08); }
   }
 
-  .cta{
-    display:flex; gap:.8rem; flex-wrap:wrap; justify-content:center;
+  /* ── Grid overlay ── */
+  .grid-overlay {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(110, 75, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(110, 75, 255, 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 0%, transparent 100%);
   }
 
-  .btn{
-    display:inline-block;
-    padding:.7rem 1.15rem;
-    border:1px solid var(--sl-color-gray-5);
-    border-radius:10px;
-    text-decoration:none;
-    color:var(--sl-color-white);
-    background:rgba(255,255,255,.03);
-    backdrop-filter:saturate(120%) blur(2px);
-    transition:transform .08s ease, background .15s ease, border-color .15s ease, box-shadow .15s ease;
-  }
-  .btn:hover{
-    background:rgba(255,255,255,.06);
-    border-color:var(--sl-color-gray-4);
-    transform:translateY(-1px);
-    box-shadow:0 6px 18px rgba(0,0,0,.25);
+  /* ── Scanlines ── */
+  .scanlines {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.06) 2px,
+      rgba(0, 0, 0, 0.06) 4px
+    );
+    pointer-events: none;
+    border-radius: inherit;
   }
 
-  .btn--primary{
-    border-color:transparent;
-    background:linear-gradient(135deg,#7c4dff 0%, #5e7bff 100%);
+  /* ── Inner content ── */
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
   }
-  .btn--primary:hover{
-    filter:brightness(1.05);
-    box-shadow:0 10px 24px rgba(94,123,255,.35);
+
+  /* ── Name ── */
+  .name-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.4rem;
+    animation: fade-up 0.7s 0.15s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(3.5rem, 10vw, 6rem);
+    letter-spacing: -0.02em;
+    margin: 0;
+    color: #fff;
+    position: relative;
+    line-height: 1;
+    /* glitch layers */
+    text-shadow: none;
+  }
+
+  .name::before,
+  .name::after {
+    content: attr(data-text);
+    position: absolute;
+    inset: 0;
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    letter-spacing: inherit;
+  }
+
+  .name::before {
+    color: rgba(94, 123, 255, 0.8);
+    animation: glitch-1 4.5s infinite;
+    clip-path: polygon(0 20%, 100% 20%, 100% 40%, 0 40%);
+  }
+
+  .name::after {
+    color: rgba(255, 75, 130, 0.7);
+    animation: glitch-2 4.5s infinite;
+    clip-path: polygon(0 60%, 100% 60%, 100% 75%, 0 75%);
+  }
+
+  @keyframes glitch-1 {
+    0%, 90%, 100% { transform: translateX(0); opacity: 0; }
+    91%            { transform: translateX(-3px); opacity: 1; }
+    93%            { transform: translateX(2px); opacity: 1; }
+    95%            { transform: translateX(0); opacity: 0; }
+  }
+
+  @keyframes glitch-2 {
+    0%, 88%, 100% { transform: translateX(0); opacity: 0; }
+    89%            { transform: translateX(3px); opacity: 1; }
+    91%            { transform: translateX(-2px); opacity: 1; }
+    93%            { transform: translateX(0); opacity: 0; }
+  }
+
+  .name-rule {
+    display: block;
+    width: clamp(40px, 8vw, 80px);
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #7c4dff, #5e7bff, transparent);
+    border-radius: 2px;
+  }
+
+  /* ── Tagline ── */
+  .tagline {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: clamp(0.95rem, 2vw, 1.05rem);
+    color: rgba(200, 195, 230, 0.75);
+    line-height: 1.7;
+    margin: 0 0 2rem;
+    max-width: 44ch;
+    animation: fade-up 0.7s 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .tagline-accent {
+    color: rgba(160, 140, 255, 0.95);
+    font-weight: 400;
+  }
+
+  /* ── CTA ── */
+  .cta {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+    animation: fade-up 0.7s 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .btn {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.7rem 1.3rem;
+    border: 1px solid rgba(110, 75, 255, 0.3);
+    border-radius: 8px;
+    text-decoration: none;
+    color: rgba(210, 205, 240, 0.9);
+    background: rgba(110, 75, 255, 0.06);
+    backdrop-filter: blur(6px);
+    transition:
+      transform 0.1s ease,
+      background 0.2s ease,
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+
+  .btn:hover {
+    background: rgba(110, 75, 255, 0.12);
+    border-color: rgba(110, 75, 255, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(80, 50, 200, 0.2);
+    color: #fff;
+  }
+
+  .btn--primary {
+    border-color: transparent;
+    background: linear-gradient(135deg, #7c4dff 0%, #5e7bff 100%);
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(94, 123, 255, 0.25);
+  }
+
+  .btn--primary:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 10px 32px rgba(94, 123, 255, 0.45);
+    border-color: transparent;
+  }
+
+  /* ── Status bar ── */
+  .status-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.72rem;
+    color: rgba(150, 140, 200, 0.5);
+    letter-spacing: 0.08em;
+    text-transform: lowercase;
+    animation: fade-up 0.7s 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #4ade80;
+    box-shadow: 0 0 8px rgba(74, 222, 128, 0.8);
+    animation: blink 2s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.3; }
+  }
+
+  .status-divider {
+    color: rgba(110, 75, 255, 0.4);
+    letter-spacing: 0;
+  }
+
+  /* ── Shared fade-up ── */
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 </style>

@@ -1,5 +1,5 @@
-# 0xFronto Portfolio
+# N22 Portfolio
 
 This repo hosts my Astro-based personal website.
 
-URL - https://0xfronto.github.io/
+URL - https://N22.github.io/

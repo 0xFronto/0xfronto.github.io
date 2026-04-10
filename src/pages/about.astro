@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/IndexLayout.astro";
-import thm from "../data/tryhackme.json"; // { username, profileUrl, badgeIframe }
-import htb from "../data/htb.json";       // { username, profileUrl }
+import thm from "../data/tryhackme.json";
+import htb from "../data/htb.json";
 
 const { username: thmUser, profileUrl: thmUrl, badgeIframe } = thm;
 const { username: htbUser, profileUrl: htbUrl } = htb;
@@ -9,342 +9,352 @@ const year = new Date().getFullYear();
 ---
 
 <Layout>
-  <main class="container">
-    <!-- ================= HERO ================= -->
+  <main class="page">
+
+    <nav class="topnav">
+      <a class="navlink" href="/">home</a>
+      <a class="navlink active" href="/about">about</a>
+      <a class="navlink" href="/writeups">write-ups</a>
+    </nav>
+
     <section class="hero">
-      <div class="aura" aria-hidden="true"></div>
-
-      <div class="avatar" aria-hidden="true">
-        <svg viewBox="0 0 24 24" width="22" height="22">
-          <path fill="currentColor" d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm2.5 5.5 2.75 2.25L6.5 14.5l1 1 4-3.25-4-3.25-1 1ZM11 15h5v-1.5h-5V15Z"/>
-        </svg>
-      </div>
-
-     <p class="subtitle">
-   <p class="subtitle">
-  Currently completing a <strong>Computer Science</strong> degree (Robotics), expected graduation 2026.
-  Experimentally driven, with a clear focus on <strong>cybersecurity</strong>, <strong>pentesting</strong>, and <strong>red teaming</strong>.
+      <div class="c tl"></div><div class="c tr"></div>
+      <div class="c bl"></div><div class="c br"></div>
+      <div class="hero-aura"></div>
+      <div class="hero-scan"></div>
+      <div class="hero-inner">
+        <div class="pretag">// profile</div>
+        <div class="avi">
+          <svg viewBox="0 0 24 24" width="22" height="22">
+            <path fill="currentColor" d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm2.5 5.5 2.75 2.25L6.5 14.5l1 1 4-3.25-4-3.25-1 1ZM11 15h5v-1.5h-5V15Z"/>
+          </svg>
+        </div>
+        <p class="sub">
+  CS student. Security focused.<br/>
+  I break things to understand them.
 </p>
-</p>
-
-
-      <div class="cta">
-        <a class="btn btn--primary" href={thmUrl} target="_blank" rel="noopener">
-          TryHackMe ({thmUser})
-        </a>
-        <a class="btn" href={htbUrl} target="_blank" rel="noopener">
-          Hack The Box ({htbUser})
-        </a>
+        <div class="hero-btns">
+          <a class="hbtn p" href={thmUrl} target="_blank" rel="noopener">
+            <span class="br2">[</span> TryHackMe ({thmUser}) <span class="br2">]</span>
+          </a>
+          <a class="hbtn" href={htbUrl} target="_blank" rel="noopener">
+            <span class="br2">[</span> Hack The Box ({htbUser}) <span class="br2">]</span>
+          </a>
+        </div>
       </div>
     </section>
 
-    <!-- ============== TRACK RECORD ============== -->
-    <section class="pow">
-      <h2 class="title-underline">activity /</h2>
+    <section class="sec">
+      <div class="sec-label">// activity</div>
       <div class="cards">
-        <!-- THM card -->
-        <a class="card card--track" href={thmUrl} target="_blank" rel="noopener">
-          <span class="pill pill--thm">TryHackMe</span>
+        <a class="card thm" href={thmUrl} target="_blank" rel="noopener">
+          <span class="pill thm-pill">TryHackMe</span>
           <div class="badge">
             <div set:html={badgeIframe}></div>
           </div>
         </a>
-        
-
-        <!-- HTB card (modifier class .htb) -->
-        <a class="card card--track htb" href={htbUrl} target="_blank" rel="noopener">
-          <div class="htb-box">
+        <a class="card htb" href={htbUrl} target="_blank" rel="noopener">
+          <span class="pill htb-pill">Hack The Box</span>
+          <div class="htb-mock">
             <img
               src="/htb-logo.png"
               alt="Hack The Box"
               class="htb-logo"
               onerror="this.src='https://resources.hackthebox.com/hubfs/HTB-Logo-1.png'"
             />
+            <div class="htb-user">// {htbUser}</div>
           </div>
-          <p class="muted center">{htbUser}   </p>
         </a>
       </div>
     </section>
 
-<section class="badges">
-  <h2 class="title-underline">env /</h2>
-
-  <div class="badges__grid">
-
-    <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" />
-    <img src="https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=cplusplus&logoColor=white" />
-    <img src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black" />
-    <img src="https://img.shields.io/badge/Bash-121011?style=for-the-badge&logo=gnu-bash&logoColor=white" />
-    <img src="https://img.shields.io/badge/PowerShell-5391FE?style=for-the-badge&logo=powershell&logoColor=white" />
-
-    <img src="https://img.shields.io/badge/Burp_Suite-FF6633?style=for-the-badge&logo=burpsuite&logoColor=white" />
-    <img src="https://img.shields.io/badge/Nmap-004E8C?style=for-the-badge" />
-    <img src="https://img.shields.io/badge/Wireshark-1679A7?style=for-the-badge&logo=wireshark&logoColor=white" />
-    <img src="https://img.shields.io/badge/Ghidra-FC0000?style=for-the-badge" />
-
-    <img src="https://img.shields.io/badge/Active_Directory-003366?style=for-the-badge&logo=microsoft&logoColor=white" />
-    <img src="https://img.shields.io/badge/BloodHound-8A2BE2?style=for-the-badge" />
-    <img src="https://img.shields.io/badge/Impacket-111111?style=for-the-badge" />
-
-  </div>
-</section>
-
-
-    <!-- ================= SKILLS ================= -->
-<section class="skills skills--saas"">
-  <h2 class="title-underline">skills /</h2>
-
-  <div class="skills__grid">
-    <article class="skillcard">
-      <h3>Programming & Foundations</h3>
-      <div class="skillbody">
-        <div class="stack">
-          <span>• Python</span>
-          <span>• C++</span>
-          <span>• Rust</span>
-          <span>• HTML/CSS</span>
-          <span>• Swift</span>
-        </div>
-        <p class="note">
-          Tooling, scripting, problem-solving. Linux and Windows, plus Bash and PowerShell.
-        </p>
-      </div>
-    </article>
-
-    <article class="skillcard">
-      <h3>Areas of Expertise</h3>
-      <div class="skillbody">
-        <div class="stack">
-          <span>• Web exploitation</span>
-          <span>• Privilege escalation</span>
-          <span>• Active Directory</span>
-        </div>
-        <p class="note">
-          Labs • CTFs • Experimentation.
-        </p>
-      </div>
-    </article>
-
-    <article class="skillcard">
-      <h3>Defensive Awareness</h3>
-      <div class="skillbody">
-        <div class="stack">
-          <span>• Vulnerability review</span>
-          <span>• Replication attempts</span>
-        </div>
-        <p class="note">
-          Building comfort with logs, triage, and how attacks show up from the defensive side.
-        </p>
-      </div>
-    </article>
-
-    <article class="skillcard research">
-      <h3>Research & Development</h3>
-      <div class="skillbody">
-        <p class="lede">
-          Research is a core part of my approach to security.
-        </p>
-        <p class="note">
-          Over time, it naturally evolves into experimentation and development, reviewing, replicating, and going deeper.
-        </p>
-      </div>
-    </article>
-  </div>
-
-<div class="page-meta">
-  <p class="skills__developing">
-    <span>Currently focused:</span> advancing reversing & vulnerability research
-  </p>
-  <p class="skills__developing">
-    <span>Currently developing:</span> ctftime integration
-  </p>
+    <section class="sec">
+      <div class="sec-label">// env</div>
+<div class="env-grid">
+  <a href="https://python.org" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" /></a>
+  <a href="https://cplusplus.com" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=cplusplus&logoColor=white" /></a>
+  <a href="https://archlinux.org" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Arch_Linux-1793D1?style=for-the-badge&logo=arch-linux&logoColor=white" /></a>
+  <a href="https://microsoft.com/powershell" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/PowerShell-5391FE?style=for-the-badge&logo=powershell&logoColor=white" /></a>
+  <a href="https://neovim.io" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Neovim-57A143?style=for-the-badge&logo=neovim&logoColor=white" /></a>
+  <a href="https://portswigger.net/burp" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Burp_Suite-FF6633?style=for-the-badge&logo=burpsuite&logoColor=white" /></a>
+  <a href="https://nmap.org" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Nmap-004E8C?style=for-the-badge" /></a>
+  <a href="https://wireshark.org" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Wireshark-1679A7?style=for-the-badge&logo=wireshark&logoColor=white" /></a>
+  <a href="https://ghidra-sre.org" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Ghidra-FC0000?style=for-the-badge" /></a>
+  <a href="https://microsoft.com/en-us/security/business/identity-access/microsoft-entra-id" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Active_Directory-003366?style=for-the-badge&logo=microsoft&logoColor=white" /></a>
+  <a href="https://bloodhound.readthedocs.io" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/BloodHound-8A2BE2?style=for-the-badge" /></a>
+  <a href="https://github.com/fortra/impacket" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Impacket-111111?style=for-the-badge" /></a>
+  <a href="https://tryhackme.com/p/N22" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/TryHackMe-212C42?style=for-the-badge&logo=tryhackme&logoColor=white" /></a>
+  <a href="https://torproject.org" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Tor-7D4698?style=for-the-badge&logo=tor-project&logoColor=white" /></a>
+  <a href="https://app.hackthebox.com/users/957027" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/HackTheBox-9FEF00?style=for-the-badge&logo=hackthebox&logoColor=black" /></a>
 </div>
+    </section>
+
+    <section class="sec">
+      <div class="sec-label">// skills</div>
+      <div class="skills-grid">
+
+        <article class="sk">
+          <h3>Programming</h3>
+          <div class="sk-items">
+            <span class="sk-item">Python</span>
+            <span class="sk-item">C++</span>
+            <span class="sk-item">Rust</span>
+            <span class="sk-item">HTML / CSS</span>
+            <span class="sk-item">Swift</span>
+          </div>
+          <p class="sk-note">Tooling, scripting, problem-solving. Linux + Windows, Bash and PowerShell.</p>
+        </article>
+
+        <article class="sk">
+          <h3>Expertise</h3>
+          <div class="sk-items">
+            <span class="sk-item">Web exploitation</span>
+            <span class="sk-item">Privilege escalation</span>
+            <span class="sk-item">Active Directory</span>
+          </div>
+          <p class="sk-note">Labs · CTFs · Experimentation.</p>
+        </article>
+
+        <article class="sk">
+          <h3>Defensive</h3>
+          <div class="sk-items">
+            <span class="sk-item">Vulnerability review</span>
+            <span class="sk-item">Replication attempts</span>
+          </div>
+          <p class="sk-note">Logs, triage, and how attacks surface from the blue side.</p>
+        </article>
+
+        <article class="sk mid">
+          <h3>Research &amp; Dev</h3>
+          <p class="sk-lede">Research is core to my approach to security.</p>
+          <p class="sk-note">Reviewing, replicating and experimentation.</p>
+        </article>
+
+      </div>
+
+      <div class="focus">
+        <div class="focus-row">
+          <span class="ftag cur">focused</span>
+          advancing reversing &amp; vulnerability research
+        </div>
+        <div class="focus-row">
+          <span class="ftag dev">developing</span>
+          ctftime integration
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
 
 <style>
-/* ===== Container ===== */
-.container{ width:min(100%,1000px); margin-inline:auto; padding-block:clamp(1rem,3vw,1.5rem) 3rem; }
+  .page {
+    width: min(100%, 980px);
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
 
-/* ===== HERO ===== */
-.hero{
-  position:relative; overflow:hidden;
-  border:1px solid var(--sl-color-gray-5); border-radius:16px;
-  padding:clamp(2rem,6vw,3.5rem) clamp(1.5rem,5vw,3rem);
-  background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.01));
-  text-align:center;
-  box-shadow:0 10px 30px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.05);
-}
-.aura{ position:absolute; inset:-60% -30% auto -30%; height:90%;
-  background:conic-gradient(from 20deg at 50% 50%, rgba(124,77,255,.25), rgba(94,123,255,.18), rgba(124,77,255,.25));
-  filter:blur(48px); animation: swirl 14s linear infinite; pointer-events:none; }
-@keyframes swirl { to { transform: rotate(360deg); } }
-.avatar{ display:inline-flex; align-items:center; justify-content:center; width:44px; height:44px; margin:0 auto .5rem; border-radius:50%; color:#fff;
-  background:linear-gradient(135deg,#7c4dff,#5e7bff); box-shadow:0 8px 24px rgba(94,123,255,.35); }
-.title{ margin:.2rem 0 .4rem; font-size:clamp(2rem,5vw,2.6rem); }
-.subtitle{ margin:.1rem 0 1.4rem; color:var(--sl-color-gray-3); }
-.cta{ display:flex; gap:.8rem; flex-wrap:wrap; justify-content:center; }
+  .topnav {
+    display: flex;
+    gap: .6rem;
+    justify-content: center;
+    padding: .6rem;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(110,75,255,0.15);
+    border-radius: 6px;
+    background: rgba(110,75,255,0.03);
+  }
+  .navlink {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: .72rem;
+    letter-spacing: .1em;
+    text-decoration: none;
+    color: rgba(150,140,200,0.45);
+    padding: .28rem .7rem;
+    border-radius: 3px;
+    transition: all .15s;
+  }
+  .navlink:hover { color: #fff; background: rgba(110,75,255,0.1); }
+  .navlink.active {
+    color: #fff;
+    background: rgba(110,75,255,0.15);
+    border: 1px solid rgba(110,75,255,0.3);
+  }
 
-.btn{
-  display:inline-flex; align-items:center; gap:.5rem; padding:.7rem 1.15rem;
-  border:1px solid var(--sl-color-gray-5); border-radius:10px;
-  text-decoration:none; color:var(--sl-color-white); background:rgba(255,255,255,.03);
-  backdrop-filter:saturate(120%) blur(2px); font-weight:600;
-  transition:transform .08s ease, background .15s ease, border-color .15s ease, box-shadow .15s ease;
-}
-.btn:hover{ background:rgba(255,255,255,.06); border-color:var(--sl-color-gray-4);
-  transform:translateY(-1px); box-shadow:0 6px 18px rgba(0,0,0,.25); }
-.btn--primary{ border-color:transparent; background:linear-gradient(135deg,#7c4dff 0%, #5e7bff 100%); }
+  .hero {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(110,75,255,0.22);
+    border-radius: 14px;
+    padding: clamp(2rem,6vw,3.5rem) clamp(1.5rem,5vw,3rem);
+    background: linear-gradient(160deg, rgba(14,9,32,.97), rgba(5,4,16,.99));
+    text-align: center;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 0 0 1px rgba(110,75,255,0.06), 0 24px 80px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.03);
+  }
+  .c { position: absolute; width: 16px; height: 16px; }
+  .tl { top:0; left:0;    border-top:2px solid rgba(124,77,255,.5); border-left:2px solid rgba(124,77,255,.5); }
+  .tr { top:0; right:0;   border-top:2px solid rgba(124,77,255,.5); border-right:2px solid rgba(124,77,255,.5); }
+  .bl { bottom:0; left:0;  border-bottom:2px solid rgba(124,77,255,.5); border-left:2px solid rgba(124,77,255,.5); }
+  .br { bottom:0; right:0; border-bottom:2px solid rgba(124,77,255,.5); border-right:2px solid rgba(124,77,255,.5); }
+  .hero-aura {
+    position: absolute; inset: -50% -30% auto; height: 80%;
+    background: radial-gradient(55% 55% at 50% 45%, rgba(110,75,255,.3) 0%, rgba(94,123,255,.08) 45%, transparent 70%);
+    filter: blur(55px); pointer-events: none;
+    animation: pulse 7s ease-in-out infinite alternate;
+  }
+  @keyframes pulse { from{opacity:.6;transform:scaleX(1)} to{opacity:1;transform:scaleX(1.08)} }
+  .hero-scan {
+    position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.06) 2px, rgba(0,0,0,.06) 4px);
+  }
+  .hero-inner { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; }
+  .pretag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: .68rem; letter-spacing: .2em;
+    color: rgba(124,77,255,.55); margin-bottom: 1rem;
+  }
+  .avi {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 48px; height: 48px; border-radius: 50%; color: #fff;
+    background: linear-gradient(135deg,#7c4dff,#5e7bff);
+    box-shadow: 0 8px 28px rgba(94,123,255,.3);
+    margin-bottom: 1rem;
+  }
+  .sub {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(.88rem,2vw,.98rem);
+    color: rgba(200,195,230,.6);
+    line-height: 1.75; max-width: 52ch;
+    margin: 0 auto 1.8rem;
+  }
+  .sub strong { color: rgba(160,140,255,.9); font-weight: 400; }
+  .hero-btns { display: flex; gap: .75rem; flex-wrap: wrap; justify-content: center; }
+  .hbtn {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: .78rem; letter-spacing: .05em;
+    display: inline-flex; align-items: center; gap: .3rem;
+    padding: .58rem 1.1rem;
+    border: 1px solid rgba(110,75,255,.28); border-radius: 4px;
+    text-decoration: none; color: rgba(210,205,240,.8);
+    background: rgba(110,75,255,.05); transition: all .15s;
+  }
+  .br2 { color: rgba(124,77,255,.4); }
+  .hbtn:hover { background: rgba(110,75,255,.12); border-color: rgba(110,75,255,.5); color: #fff; transform: translateY(-2px); }
+  .hbtn.p { border-color: transparent; background: linear-gradient(135deg,#7c4dff,#5e7bff); color: #fff; box-shadow: 0 4px 20px rgba(94,123,255,.25); }
+  .hbtn.p:hover { filter: brightness(1.12); border-color: transparent; }
 
-/* ===== TRACK RECORD ===== */
-.pow h2{ margin-top:2rem; margin-bottom:.6rem; }
-.cards{ display:grid; gap:1rem; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
-.card{
-  text-decoration:none; color:inherit; border:1px solid var(--sl-color-gray-5);
-  border-radius:14px; padding:1rem 1.1rem; background:rgba(255,255,255,.02);
-  transition:transform .08s ease, border-color .15s ease, box-shadow .15s ease, background .15s ease;
-}
-.card:hover{ transform:translateY(-2px); border-color:var(--sl-color-gray-4);
-  box-shadow:0 10px 24px rgba(0,0,0,.22); background:rgba(255,255,255,.03); }
-.pill{ display:inline-block; font-weight:700; font-size:.8rem; padding:.25rem .55rem; border-radius:999px; border:1px solid var(--sl-color-gray-5); background:rgba(255,255,255,.03); }
-.pill--thm{ border-color:transparent; background:linear-gradient(135deg,#7c4dff,#5e7bff); color:#fff; }
-
-/* THM track card */
-.card.card--track{
-  display:flex; flex-direction:column; justify-content:center; align-items:center;
-  overflow:hidden; border-radius:12px; background:rgba(0,0,0,.25); aspect-ratio:520/180;
-  background: transparent;
-}
-
-/* HTB track card override */
-.card.card--track.htb {
-  background: transparent;
-  border: 1px solid var(--sl-color-gray-5);
-  aspect-ratio: 520/180;
+  .sec { margin-bottom: 2.5rem; }
+  .sec-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: .78rem;
+  letter-spacing: .18em;
+  color: rgba(180,165,255,0.9);
+  margin-bottom: 1rem;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  gap: .8rem;
 }
-.card.card--track.htb:hover {
-  box-shadow: 0 0 20px rgba(0, 255, 0, 0.25);
-  border-color: rgba(0, 255, 0, 0.4);
-}
-.card--thm:hover {
-  box-shadow: 0 0 24px rgba(124, 77, 255, 0.45),  /* purple glow */
-              0 0 48px rgba(94, 123, 255, 0.35);  /* bluish glow */
-  transform: translateY(-2px);
+.sec-label::after {
+  content: ''; flex: 1; height: 1px;
+  background: linear-gradient(90deg, rgba(110,75,255,.35), transparent);
 }
 
-/* Badge wrapper */
-.badge{
-  position: relative;
-  width: 100%;
-  max-width: 520px;
-  aspect-ratio: 520 / 180;
-  margin: 1rem auto .25rem;
-  border-radius: 12px;
-  overflow: hidden;
-  --card-surface: rgba(255,255,255,.02);
-  background: transparent;
-}
-.badge :global(iframe){
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-30%);  
-  width: 120%;
-  height: 100%;
-  border: 0;
-  display: block;
-  border-radius: 12px;
-}
+  .cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); }
+  .card {
+    text-decoration: none; color: inherit;
+    border: 1px solid rgba(110,75,255,.15); border-radius: 10px;
+    padding: 1.2rem; background: rgba(10,6,26,.7);
+    display: flex; flex-direction: column; align-items: center;
+    min-height: 180px; position: relative; overflow: hidden;
+    transition: all .18s;
+  }
+  .card.thm:hover { border-color: rgba(124,77,255,.45); box-shadow: 0 0 28px rgba(124,77,255,.1); transform: translateY(-3px); }
+  .card.htb:hover { border-color: rgba(0,229,255,.35); box-shadow: 0 0 28px rgba(0,229,255,.08); transform: translateY(-3px); }
+  .pill {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: .62rem; letter-spacing: .12em; text-transform: uppercase;
+    padding: .18rem .55rem; border-radius: 2px; margin-bottom: .9rem;
+    border: 1px solid; font-weight: 700;
+  }
+  .thm-pill { background: rgba(124,77,255,.12); color: rgba(160,140,255,.85); border-color: rgba(124,77,255,.28); }
+  .htb-pill { background: rgba(0,229,255,.07); color: rgba(0,229,255,.75); border-color: rgba(0,229,255,.2); }
+  .badge {
+    position: relative; width: 100%; max-width: 480px;
+    aspect-ratio: 520/180; border-radius: 8px; overflow: hidden;
+  }
+  .badge :global(iframe) {
+    position: absolute; top: 0; left: 50%;
+    transform: translateX(-30%);
+    width: 120%; height: 100%; border: 0;
+  }
+  .htb-mock { display: flex; flex-direction: column; align-items: center; gap: .5rem; flex: 1; justify-content: center; }
+  .htb-logo { max-width: 130px; opacity: .85; transition: opacity .2s, transform .15s; }
+  .htb-logo:hover { opacity: 1; transform: translateY(-1px); }
+  .htb-user { font-family: 'Share Tech Mono', monospace; font-size: .72rem; color: rgba(150,140,200,.4); letter-spacing: .1em; }
 
-/* HTB logo */
-.htb-box{ display:flex; align-items:center; justify-content:center; width:100%; height:100%; }
-.htb-logo{ max-width:70%; max-height:70%; opacity:.95; filter:drop-shadow(0 6px 14px rgba(124,77,255,.25)); transition:opacity .2s ease, transform .15s ease; }
-.htb-logo:hover{ opacity:1; transform:translateY(-1px); }
-.muted{ color:var(--sl-color-gray-3); }
-.center{ text-align:center; }
+  .env-grid { display: flex; flex-wrap: wrap; gap: .45rem; }
+  .env-tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: .75rem; letter-spacing: .06em;
+    padding: .25rem .65rem; border-radius: 3px;
+    border: 1px solid rgba(110,75,255,.25);
+    color: #c8d8e4; background: rgba(110,75,255,.06);
+    transition: all .15s;
+  }
+  .env-tag:hover { border-color: rgba(110,75,255,.5); color: #fff; background: rgba(110,75,255,.12); }
 
-/* ===== SKILLS ===== */
-.skills{ margin-top:2rem; }
-.skills__title{ margin:0 0 .75rem; }
-.skills__grid{ display:grid; gap:1rem; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); }
-.skillcard{
-  border-radius:14px; padding:1rem 1.15rem 1.2rem;
-  background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.015));
-  border:1px solid var(--sl-color-gray-6, #23252c);
-  box-shadow:0 6px 16px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.04);
-  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-}
-.skillcard:hover{ transform:translateY(-4px); border-color:transparent;
-  box-shadow:0 14px 34px rgba(0,0,0,.35), 0 0 0 1px rgba(124,77,255,.25) inset; }
-.skillcard h3{ margin:.1rem 0 .35rem; font-size:1.05rem; font-weight:700; letter-spacing:.2px; }
+  .skills-grid { display: grid; gap: .9rem; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); }
+  @media (min-width: 860px) {
+    .skills-grid { grid-template-columns: repeat(3,1fr); }
+    .sk.mid { grid-column: 2; }
+  }
+  .sk {
+    border: 1px solid rgba(110,75,255,.13); border-radius: 10px;
+    padding: 1.1rem 1.15rem 1.2rem; background: rgba(10,6,26,.7);
+    transition: all .18s; position: relative; overflow: hidden;
+  }
+  .sk::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(124,77,255,.3), transparent);
+    opacity: 0; transition: opacity .2s;
+  }
+  .sk:hover::before { opacity: 1; }
+  .sk:hover { transform: translateY(-3px); border-color: rgba(124,77,255,.28); box-shadow: 0 12px 32px rgba(0,0,0,.4); }
+  .sk h3 {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: .78rem; letter-spacing: .1em; text-transform: uppercase;
+    color: #fff; margin-bottom: .8rem; font-weight: 400;
+  }
+  .sk-items { display: flex; flex-direction: column; gap: .25rem; margin-bottom: .65rem; }
+  .sk-item { font-family: 'Share Tech Mono', monospace; font-size: .82rem; color: #c8d8e4; }
+  .sk-item::before { content: '> '; color: rgba(124,77,255,.5); }
+  .sk-note { font-family: 'DM Sans', sans-serif; font-size: .85rem; color: rgba(200,210,220,0.6); line-height: 1.6; }
+  .sk-lede { font-family: 'DM Sans', sans-serif; font-size: .85rem; color: rgba(160,140,255,.7); line-height: 1.6; margin-bottom: .35rem; }
 
-/* Put the R&D card in the middle column on desktop */
-@media (min-width: 900px){
-  .skills__grid{ grid-template-columns: repeat(3, 1fr); }
-  .skillcard.research{ grid-column: 2; }
-}
+  .focus { display: flex; flex-direction: column; gap: .45rem; margin-top: 1.4rem; }
+  .focus-row {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: .72rem; color: rgba(150,140,200,.4);
+    display: flex; align-items: center; gap: .55rem;
+  }
+  .ftag { font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; padding: .15rem .48rem; border-radius: 2px; border: 1px solid; }
+  .ftag.cur { background: rgba(124,77,255,.1); color: rgba(160,140,255,.75); border-color: rgba(124,77,255,.22); }
+  .ftag.dev { background: rgba(0,229,255,.05); color: rgba(0,229,255,.55); border-color: rgba(0,229,255,.16); }
 
+  .foot {
+    border-top: 1px solid rgba(110,75,255,.1);
+    padding: 1rem 1.5rem; margin-top: 1rem;
+    display: flex; align-items: center; justify-content: space-between;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: .68rem; letter-spacing: .08em;
+    color: rgba(150,140,200,.3);
+    width: min(100%,980px); margin-inline: auto;
+  }
+  .foot-links { display: flex; gap: 1rem; }
+  .foot-links a { color: rgba(150,140,200,.3); text-decoration: none; transition: color .15s; }
+  .foot-links a:hover { color: rgba(160,140,255,.7); }
 
-.cards a.card.card--track:first-child:hover {
-  box-shadow:
-    0 0 24px rgba(124, 77, 255, 0.45),
-    0 0 48px rgba(94, 123, 255, 0.35),
-    0 12px 24px rgba(0,0,0,.22);
-  border-color: rgba(124, 77, 255, 0.45);
-  transform: translateY(-2px);
-}
-
-
-.skills__developing{ margin-top:1rem; font-size:.92rem; color:var(--sl-color-gray-3); }
-.skills__developing span{
-  padding:.25rem .5rem;
-  border-radius:999px;
-  background:linear-gradient(135deg,#7c4dff,#5e7bff); color:#fff; margin-right:.5rem;
-}
-/* Make selection consistent in both dark & light modes */
-:root {
-  /* tweak if you want slightly different tints */
-  --selection-bg: rgba(124, 77, 255, 0.28);  /* purple wash */
-  --selection-fg: #ffffff;
-}
-
-/* Default selection everywhere */
-*::selection {
-  background: var(--selection-bg);
-  color: var(--selection-fg);
-}
-
-/* Fix selection for gradient text (your <strong> with text-clip) */
-strong::selection,
-.subtitle strong::selection {
-  /* When selected, force actual text color so it doesn't look broken */
-  -webkit-text-fill-color: var(--selection-fg);
-  color: var(--selection-fg);
-  background: var(--selection-bg);
-}
-
-/* Optional: if you use <em> or .gradient-text elsewhere */
-.gradient-text::selection {
-  -webkit-text-fill-color: var(--selection-fg);
-  color: var(--selection-fg);
-  background: var(--selection-bg);
-}
-
-
-
-
-/* ===== FOOTER ===== */
-.site-footer{ text-align:center; padding:1.5rem 0; font-size:.9rem; color:var(--sl-color-gray-3); border-top:1px solid var(--sl-color-gray-5); letter-spacing:.5px; }
+  *::selection { background: rgba(124,77,255,.28); color: #fff; }
 </style>
-
-<footer class="site-footer">
-  <p>
-    © {year} N22 ·
-    <a href="https://github.com/0xN22" target="_blank" rel="noopener">GitHub</a>
-    · <a href="/writeups">Write-ups</a>
-  </p>
-</footer>
-
-

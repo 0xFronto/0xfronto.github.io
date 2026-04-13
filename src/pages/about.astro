@@ -8,7 +8,7 @@ const { username: htbUser, profileUrl: htbUrl } = htb;
 const year = new Date().getFullYear();
 ---
 
-<Layout>
+<Layout hideFooter={true}>
   <main class="page">
 
     <nav class="topnav">
@@ -30,9 +30,9 @@ const year = new Date().getFullYear();
           </svg>
         </div>
         <p class="sub">
-  CS student. Security focused.<br/>
-  I break things to understand them.
-</p>
+          CS student graduating 2026. Majoring in Robotics.<br/>
+          My crime is that of curiosity.
+        </p>
         <div class="hero-btns">
           <a class="hbtn p" href={thmUrl} target="_blank" rel="noopener">
             <span class="br2">[</span> TryHackMe ({thmUser}) <span class="br2">]</span>
@@ -70,23 +70,23 @@ const year = new Date().getFullYear();
 
     <section class="sec">
       <div class="sec-label">// env</div>
-<div class="env-grid">
-  <a href="https://python.org" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" /></a>
-  <a href="https://cplusplus.com" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=cplusplus&logoColor=white" /></a>
-  <a href="https://archlinux.org" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Arch_Linux-1793D1?style=for-the-badge&logo=arch-linux&logoColor=white" /></a>
-  <a href="https://microsoft.com/powershell" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/PowerShell-5391FE?style=for-the-badge&logo=powershell&logoColor=white" /></a>
-  <a href="https://neovim.io" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Neovim-57A143?style=for-the-badge&logo=neovim&logoColor=white" /></a>
-  <a href="https://portswigger.net/burp" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Burp_Suite-FF6633?style=for-the-badge&logo=burpsuite&logoColor=white" /></a>
-  <a href="https://nmap.org" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Nmap-004E8C?style=for-the-badge" /></a>
-  <a href="https://wireshark.org" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Wireshark-1679A7?style=for-the-badge&logo=wireshark&logoColor=white" /></a>
-  <a href="https://ghidra-sre.org" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Ghidra-FC0000?style=for-the-badge" /></a>
-  <a href="https://microsoft.com/en-us/security/business/identity-access/microsoft-entra-id" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Active_Directory-003366?style=for-the-badge&logo=microsoft&logoColor=white" /></a>
-  <a href="https://bloodhound.readthedocs.io" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/BloodHound-8A2BE2?style=for-the-badge" /></a>
-  <a href="https://github.com/fortra/impacket" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Impacket-111111?style=for-the-badge" /></a>
-  <a href="https://tryhackme.com/p/N22" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/TryHackMe-212C42?style=for-the-badge&logo=tryhackme&logoColor=white" /></a>
-  <a href="https://torproject.org" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Tor-7D4698?style=for-the-badge&logo=tor-project&logoColor=white" /></a>
-  <a href="https://app.hackthebox.com/users/957027" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/HackTheBox-9FEF00?style=for-the-badge&logo=hackthebox&logoColor=black" /></a>
-</div>
+      <div class="env-grid">
+        <a href="https://python.org" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" /></a>
+        <a href="https://cplusplus.com" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=cplusplus&logoColor=white" /></a>
+        <a href="https://archlinux.org" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Arch_Linux-1793D1?style=for-the-badge&logo=arch-linux&logoColor=white" /></a>
+        <a href="https://microsoft.com/powershell" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/PowerShell-5391FE?style=for-the-badge&logo=powershell&logoColor=white" /></a>
+        <a href="https://neovim.io" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Neovim-57A143?style=for-the-badge&logo=neovim&logoColor=white" /></a>
+        <a href="https://portswigger.net/burp" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Burp_Suite-FF6633?style=for-the-badge&logo=burpsuite&logoColor=white" /></a>
+        <a href="https://nmap.org" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Nmap-004E8C?style=for-the-badge" /></a>
+        <a href="https://wireshark.org" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Wireshark-1679A7?style=for-the-badge&logo=wireshark&logoColor=white" /></a>
+        <a href="https://ghidra-sre.org" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Ghidra-FC0000?style=for-the-badge" /></a>
+        <a href="https://microsoft.com/en-us/security/business/identity-access/microsoft-entra-id" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Active_Directory-003366?style=for-the-badge&logo=microsoft&logoColor=white" /></a>
+        <a href="https://bloodhound.readthedocs.io" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/BloodHound-8A2BE2?style=for-the-badge" /></a>
+        <a href="https://github.com/fortra/impacket" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Impacket-111111?style=for-the-badge" /></a>
+        <a href="https://tryhackme.com/p/N22" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/TryHackMe-212C42?style=for-the-badge&logo=tryhackme&logoColor=white" /></a>
+        <a href="https://torproject.org" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/Tor-7D4698?style=for-the-badge&logo=tor-project&logoColor=white" /></a>
+        <a href="https://app.hackthebox.com/users/957027" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/HackTheBox-9FEF00?style=for-the-badge&logo=hackthebox&logoColor=black" /></a>
+      </div>
     </section>
 
     <section class="sec">
@@ -102,32 +102,47 @@ const year = new Date().getFullYear();
             <span class="sk-item">HTML / CSS</span>
             <span class="sk-item">Swift</span>
           </div>
-          <p class="sk-note">Tooling, scripting, problem-solving. Linux + Windows, Bash and PowerShell.</p>
+          <p class="sk-note">Building an iOS app alongside security work. Scripting for fun with PowerShell 7.</p>
         </article>
 
         <article class="sk">
-          <h3>Expertise</h3>
+          <h3>Offensive Security</h3>
           <div class="sk-items">
             <span class="sk-item">Web exploitation</span>
             <span class="sk-item">Privilege escalation</span>
-            <span class="sk-item">Active Directory</span>
+            <span class="sk-item">Active Directory attacks</span>
+            <span class="sk-item">OSINT</span>
+            <span class="sk-item">Cryptography</span>
+            <span class="sk-item">Forensics</span>
+            <span class="sk-item">Pwn</span>
           </div>
-          <p class="sk-note">Labs · CTFs · Experimentation.</p>
+          <p class="sk-note">14 HTB events · 59 flags · monthly CTF competitor.</p>
         </article>
 
         <article class="sk">
           <h3>Defensive</h3>
           <div class="sk-items">
-            <span class="sk-item">Vulnerability review</span>
-            <span class="sk-item">Replication attempts</span>
+            <span class="sk-item">HTB Sherlocks</span>
+            <span class="sk-item">LetsDefend</span>
+            <span class="sk-item">Log analysis & triage</span>
+            <span class="sk-item">Malware analysis</span>
           </div>
-          <p class="sk-note">Logs, triage, and how attacks surface from the blue side.</p>
+          <p class="sk-note">Blue team awareness makes you a better attacker.</p>
         </article>
 
         <article class="sk mid">
-          <h3>Research &amp; Dev</h3>
-          <p class="sk-lede">Research is core to my approach to security.</p>
-          <p class="sk-note">Reviewing, replicating and experimentation.</p>
+          <h3>For Fun</h3>
+          <div class="sk-items">
+            <span class="sk-item">CTF / Hacking competitions</span>
+            <span class="sk-item">Coding competitions</span>
+            <span class="sk-item">PowerShell scripting</span>
+            <span class="sk-item">Replicating CVEs</span>
+            <span class="sk-item">GeoGuessr — top 1%</span>
+            <span class="sk-item">Chess</span>
+            <span class="sk-item">Philosophy</span>
+            <span class="sk-item">Research & deep dives</span>
+          </div>
+          <p class="sk-note">If I'm not studying, I'm probably doing one of these.</p>
         </article>
 
       </div>
@@ -135,18 +150,30 @@ const year = new Date().getFullYear();
       <div class="focus">
         <div class="focus-row">
           <span class="ftag cur">focused</span>
-          advancing reversing &amp; vulnerability research
+          reversing &amp; research
         </div>
         <div class="focus-row">
           <span class="ftag dev">developing</span>
-          ctftime integration
+          iOS application · CTFtime integration · OSINT toolkit · project showcase
+        </div>
+        <div class="focus-row">
+          <span class="ftag proj">projects</span>
+            iOS app · OSINT Chrome extension · ESP32 wireless analyzer
         </div>
       </div>
     </section>
 
   </main>
 
+  <footer class="foot">
+    <span>© {year} N22</span>
+    <div class="foot-links">
+      <a href="https://github.com/0xN22" target="_blank" rel="noopener">GitHub</a>
+      <a href="/writeups">Write-ups</a>
+    </div>
+  </footer>
 
+</Layout>
 
 <style>
   .page {
@@ -247,19 +274,19 @@ const year = new Date().getFullYear();
 
   .sec { margin-bottom: 2.5rem; }
   .sec-label {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: .78rem;
-  letter-spacing: .18em;
-  color: rgba(180,165,255,0.9);
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  gap: .8rem;
-}
-.sec-label::after {
-  content: ''; flex: 1; height: 1px;
-  background: linear-gradient(90deg, rgba(110,75,255,.35), transparent);
-}
+    font-family: 'Share Tech Mono', monospace;
+    font-size: .78rem;
+    letter-spacing: .18em;
+    color: rgba(180,165,255,0.9);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+  }
+  .sec-label::after {
+    content: ''; flex: 1; height: 1px;
+    background: linear-gradient(90deg, rgba(110,75,255,.35), transparent);
+  }
 
   .cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); }
   .card {
@@ -294,16 +321,10 @@ const year = new Date().getFullYear();
   .htb-logo:hover { opacity: 1; transform: translateY(-1px); }
   .htb-user { font-family: 'Share Tech Mono', monospace; font-size: .72rem; color: rgba(150,140,200,.4); letter-spacing: .1em; }
 
-  .env-grid { display: flex; flex-wrap: wrap; gap: .45rem; }
-  .env-tag {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: .75rem; letter-spacing: .06em;
-    padding: .25rem .65rem; border-radius: 3px;
-    border: 1px solid rgba(110,75,255,.25);
-    color: #c8d8e4; background: rgba(110,75,255,.06);
-    transition: all .15s;
-  }
-  .env-tag:hover { border-color: rgba(110,75,255,.5); color: #fff; background: rgba(110,75,255,.12); }
+  .env-grid { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .env-grid a { display: inline-flex; }
+  .env-grid img { border-radius: 2px; filter: brightness(.88) contrast(1.05); transition: filter .15s; }
+  .env-grid img:hover { filter: brightness(1.05) contrast(1.1); }
 
   .skills-grid { display: grid; gap: .9rem; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); }
   @media (min-width: 860px) {
@@ -342,6 +363,7 @@ const year = new Date().getFullYear();
   .ftag { font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; padding: .15rem .48rem; border-radius: 2px; border: 1px solid; }
   .ftag.cur { background: rgba(124,77,255,.1); color: rgba(160,140,255,.75); border-color: rgba(124,77,255,.22); }
   .ftag.dev { background: rgba(0,229,255,.05); color: rgba(0,229,255,.55); border-color: rgba(0,229,255,.16); }
+  .ftag.proj { background: rgba(74,222,128,.05); color: rgba(74,222,128,.6); border-color: rgba(74,222,128,.18); }
 
   .foot {
     border-top: 1px solid rgba(110,75,255,.1);

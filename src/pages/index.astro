@@ -46,9 +46,7 @@ import Layout from "../layouts/IndexLayout.astro";
 
         <div class="cta" id="cta" style="opacity:0">
           <a href="/about" class="btn btn--ghost">
-            <span class="btn-bracket">[</span>
-            <span class="btn-text">about</span>
-            <span class="btn-bracket">]</span>
+            <span class="btn-top">[ about ]</span>
             <span class="btn-sub">who is this?</span>
           </a>
           <a href="/writeups" class="btn btn--primary">
@@ -89,7 +87,7 @@ import Layout from "../layouts/IndexLayout.astro";
     position: fixed;
     inset: 0;
     z-index: 0;
-    opacity: 0.03;
+    opacity: 0.08;
   }
 
   .hero {
@@ -263,37 +261,33 @@ import Layout from "../layouts/IndexLayout.astro";
   .btn--primary .btn-bracket { color: rgba(255,255,255,0.4); }
 
   .btn--ghost {
-  flex-direction: column;
-  gap: 0;
-  padding: .55rem 1.3rem;
-  line-height: 1.2;
-  border-color: rgba(255,46,99,0.3);
-  color: rgba(255,150,170,0.9);
-}
-.btn--ghost:hover {
-  border-color: rgba(255,46,99,0.6);
-  background: rgba(255,46,99,0.08);
-  color: #fff;
-  box-shadow: 0 0 20px rgba(255,46,99,0.35), 0 0 40px rgba(255,46,99,0.15);
-  transform: translateY(-2px);
-}
-
-.btn--ghost .btn-bracket {
-  color: rgba(255,46,99,0.5);
-}
-.btn--ghost:hover .btn-bracket {
-  color: rgba(255,46,99,0.8);
-}
-.btn--ghost .btn-sub {
-  font-size: .58rem;
-  letter-spacing: .14em;
-  color: rgba(255,46,99,0.4);
-  text-transform: uppercase;
-  transition: color .15s;
-}
-.btn--ghost:hover .btn-sub {
-  color: rgba(255,100,130,0.8);
-}
+    flex-direction: column;
+    align-items: center;
+    gap: .15rem;
+    padding: .55rem 1.3rem;
+    line-height: 1.2;
+    border-color: rgba(255,46,99,0.3);
+    color: rgba(255,150,170,0.9);
+  }
+  .btn--ghost .btn-top {
+    font-size: .82rem;
+    letter-spacing: .06em;
+  }
+  .btn--ghost .btn-sub {
+    font-size: .58rem;
+    letter-spacing: .14em;
+    color: rgba(255,46,99,0.4);
+    text-transform: uppercase;
+    transition: color .15s;
+  }
+  .btn--ghost:hover {
+    border-color: rgba(255,46,99,0.6);
+    background: rgba(255,46,99,0.08);
+    color: #fff;
+    box-shadow: 0 0 20px rgba(255,46,99,0.35), 0 0 40px rgba(255,46,99,0.15);
+    transform: translateY(-2px);
+  }
+  .btn--ghost:hover .btn-sub { color: rgba(255,100,130,0.8); }
 
   .status-bar {
     display: flex; align-items: center; gap: .5rem;
@@ -308,6 +302,30 @@ import Layout from "../layouts/IndexLayout.astro";
   }
   @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
   .divider { color: rgba(110,75,255,0.3); }
+
+  @keyframes fadeout {
+    0%   { opacity: 1; transform: translateY(0); }
+    70%  { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-8px); }
+  }
+
+  .name-scan {
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(255,255,255,0.06) 48%,
+      rgba(255,255,255,0.12) 50%,
+      rgba(255,255,255,0.06) 52%,
+      transparent 100%
+    );
+    animation: scan-sweep 0.8s ease-out forwards;
+    pointer-events: none;
+  }
+  @keyframes scan-sweep {
+    0%   { transform: translateY(-100%); opacity: 1; }
+    100% { transform: translateY(100%);  opacity: 0; }
+  }
 </style>
 
 <script>
@@ -315,14 +333,17 @@ import Layout from "../layouts/IndexLayout.astro";
   const ctx = canvas.getContext('2d')!;
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-  window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
   const cols = Math.floor(canvas.width / 16);
   const drops: number[] = Array(cols).fill(1);
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*<>/\\|{}[]';
   function drawMatrix() {
-    ctx.fillStyle = 'rgba(7,6,15,0.05)';
+    ctx.fillStyle = 'rgba(7,6,15,0.02)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = '#7c4dff';
+    ctx.fillStyle = 'rgba(180,140,255,0.45)';
     ctx.font = '12px Share Tech Mono, monospace';
     for (let i = 0; i < drops.length; i++) {
       ctx.fillText(chars[Math.floor(Math.random() * chars.length)], i * 16, drops[i] * 16);
@@ -359,6 +380,12 @@ import Layout from "../layouts/IndexLayout.astro";
     cmdEl.textContent = 'whoami';
     nameWrap.style.opacity = '1';
     nameEl.classList.add('glitch-burst');
+
+    const scan = document.createElement('div');
+    scan.className = 'name-scan';
+    nameEl.appendChild(scan);
+    setTimeout(() => scan.remove(), 900);
+
     await sleep(700);
     nameEl.classList.remove('glitch-burst');
     await sleep(200);
@@ -405,4 +432,26 @@ import Layout from "../layouts/IndexLayout.astro";
   }
   updateClock();
   setInterval(updateClock, 1000);
+
+  let typed = '';
+  document.addEventListener('keydown', (e) => {
+    typed += e.key.toLowerCase();
+    if (typed.length > 10) typed = typed.slice(-10);
+    if (typed.includes('sudo')) {
+      typed = '';
+      const hero = document.querySelector('.hero-inner')!;
+      const line = document.createElement('div');
+      line.style.cssText = `
+        font-family: 'Share Tech Mono', monospace;
+        font-size: .75rem;
+        color: rgba(255,80,80,0.8);
+        letter-spacing: .08em;
+        margin-bottom: .8rem;
+        animation: fadeout 2.5s forwards;
+      `;
+      line.textContent = 'sudo: permission denied';
+      hero.insertBefore(line, hero.firstChild);
+      setTimeout(() => line.remove(), 2500);
+    }
+  });
 </script>
